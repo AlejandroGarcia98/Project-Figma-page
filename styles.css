@@ -1,0 +1,623 @@
+/*
+1. Posicionamiento (Static, absolute, relative, fixed)
+2. Modelo de caja (box model)- (Margin, padding, border y content)
+3. Tipografia (tipos, tamaños de fuentes, etc)
+4. Visuales (shadow box, border radius, Gradient, etc)
+5. Miscelaneos o otros
+*/
+
+:root {
+    /* Colores */
+    --bitcoin-orange: #F7931A;
+    --soft-orange: #FFE9D5;
+    --secondary-blue: #1A9AF7;
+    --soft-blue: #E7F5FF;
+    --warm-black:#201E1C;
+    --black: #282623;
+    --grey: #BABABA;
+    --off-white: #FAF8F7;
+    --just-white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'DM Sans', sans-serif;
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-width: 320px; /* quiere decir que el width no se va a hacer mas pequeño que 320px*/
+    height: 334px;
+    text-align: center;
+    background: linear-gradient(207.8deg, #201E1C 16.69%, #F7931A 100%);
+}
+
+header img {
+    width: 150px;
+    height: 24px;
+    margin-top: 60px;
+    align-self: center; /* como usamos flex esta es la forma de poder centrar un elemento que tenga un contenedor con display flex*/
+}
+
+.header--title-container {
+    width: 90%; /* va a estar utilizando siempre un width del 90% entre 288 y 900px*/
+    min-width: 288px; /* No se va a hacer mas pequeño que 288px*/
+    max-width: 900px; /* si llega a 900px va a dejar de crecer */
+    height: 218px;
+    margin-top: 40px;
+    text-align: center;
+    align-self: center; /* Para que el contenedor div, donde esta el texto, se centre */
+}
+
+.header--title-container h1 {
+    color: var(--just-white);
+    font-size: 2.4rem;
+    font-weight: bold; /* Peso de la fuente (para que se vea mas gordita)*/
+    line-height: 2.6rem; /* Dimension de altura que va a tener entre lineas */
+}
+
+.header--title-container p {
+    margin-top: 25px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: var(--soft-orange);
+}
+
+.header--title-container .header--bottom {
+    position: absolute; /* En position absolute podemos usar top, bottom, left y right para poder mover en esas posiciones mi contenedor o elemento, si estoy en algun otro position no se va a poder, principalmente con position relative */
+    left: calc(50% - 118px); /* Esta funcion nos ayuda a generar un calculo, aqui le decimos que queremos que se vaya al centro con el 50%, pero como el boton es mas grande, debemos hacer un calculo con pixeles para posicionarlo */ 
+    top: 270px;
+    display: block;
+    margin-top: 35px;
+    padding: 15px;
+    width: 229px;
+    height: 48px;
+    background-color: var(--off-white);
+    /* Sombra */
+    box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.header--bottom span {
+    display: inline-block; /* Para que el espan se pueda ver, la parte de la imagen como background, tenemos que ponerle un display, este display en span por default viene en inline, el cual no nos sirve, tiene que ser un block o inline-block */
+    width: 13px;
+    height: 8px;
+    margin-left: 10px;
+    background-image: url('./assets/icons/down-arrow.svg');
+}
+
+/* El position absolute lo que hace es: va a tomar como position relative a su padre directo, en este caso seria el header, y le da el beneficio de reposicionar en cualquier parte del header a pesar de que existan mas elementos */
+
+main {
+    width: 100%;
+    height: auto;
+    background-color: var(--off-white);
+}
+
+.main-exchange-container {
+    width: 100%;
+    height: auto;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.main-exchange-container--tittle {
+    width: 90%;
+    min-width: 288px;
+    max-width: 900px;
+    margin: 0 auto; /* Como no esta ocupando el 100%, se va a posicionar en el centro*/
+}
+
+.main-exchange-container .backgroundimg {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    background-image: url("./assets/img/Bitcoin.svg"); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* Esto lo usamos porque si la imagen fuera mas chica que el cntenedor, lo que va a hacer el backgroundimg es que va a replicar esa imagen para intentar cubrir el contenedor */
+}
+
+.main-exchange-container h2 {
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--black);
+}
+
+.main-exchange-container p {
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    color: #757575; 
+}
+
+.main-currency-table {
+    width: 70%; /* Porque la tabla no ocupa el 100% y la tabla esta dentro del contenedor, el cual podria limitar el crecimiento de la tabla */
+    min-width: 235px;
+    max-width: 500px;
+    height: 360px;
+    margin: 0 40px; /* lo que quiere decir es que no le va agrgar margen de arriba a abajo y de izquierda a derecha va a calcular el margin que tiene que ser para que quede en el centro */
+    font-family: "Inter", sans-serif;
+    scroll-snap-align: center;
+}
+
+.main-currency-table .currency-table--tittle {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 2.3rem;
+    color: var(--secondary-blue);
+}
+
+.main-tables-container {
+    display: flex;
+    height: 400px;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+}
+
+.currency-table--container {
+    width: 90%;
+    min-width: 230px;
+    max-width: 300px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.currency-table--container table {
+    width: 100%;
+    height: 100%;
+}
+
+.currency-table--container td {
+    width: 50%;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.9rem;
+    color: var(--grey);
+    background-color: var(--just-white);
+}
+
+.currency-table--container .table__top-left {
+    border-radius: 15px 0 0 0;
+}
+
+.currency-table--container .table__top-rigth {
+    border-radius: 0 15px 0 0;
+}
+
+.currency-table--container .table__bottom-left {
+    border-radius: 0 0 0 15px;
+}
+
+.currency-table--container .table__bottom-right {
+    border-radius: 0 0 15px 0;
+}
+
+.currency-table--container .table-right {
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.7rem;
+    color: var(--grey);
+}
+
+.currency-table--date {
+    width: 190px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 8px;
+    background-color: #E7F5FF;
+    border-radius: 8px;
+}
+
+.currency-table--date p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: var(--warm-black);
+    font-weight: 300;
+}
+
+/* Segunda tabla */
+
+.main-currency-table-two {
+    width: 70%; /* Porque la tabla no ocupa el 100% y la tabla esta dentro del contenedor, el cual podria limitar el crecimiento de la tabla */
+    min-width: 235px;
+    max-width: 500px;
+    height: 360px;
+    margin: 0 40px; /* lo que quiere decir es que no le va agrgar margen de arriba a abajo y de izquierda a derecha va a calcular el margin que tiene que ser para que quede en el centro */
+    font-family: "Inter", sans-serif;
+    scroll-snap-align: center;
+}
+
+.main-currency-table-two .currency-table--tittle-two {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 2.3rem;
+    color: var(--bitcoin-orange);
+}
+
+.currency-table--container-two {
+    width: 90%;
+    min-width: 230px;
+    max-width: 300px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.currency-table--container-two table {
+    width: 100%;
+    height: 100%;
+}
+
+.currency-table--container-two td {
+    width: 50%;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.9rem;
+    color: var(--grey);
+    background-color: var(--just-white);
+}
+
+.currency-table--container-two .table__top-left-two {
+    border-radius: 15px 0 0 0;
+}
+
+.currency-table--container-two .table__top-rigth-two {
+    border-radius: 0 15px 0 0;
+}
+
+.currency-table--container-two .table__bottom-left-two {
+    border-radius: 0 0 0 15px;
+}
+
+.currency-table--container-two .table__bottom-right-two {
+    border-radius: 0 0 15px 0;
+}
+
+.currency-table--container-two .table-right-two {
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.7rem;
+    color: var(--grey);
+}
+
+.currency-table--container-two .down {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    background-image: url("./assets/icons/trending-down.svg");
+}
+
+.currency-table--container-two .up {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    background-image: url('./assets/icons/trending-up.svg');
+}
+
+.currency-table--date-two {
+    width: 190px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 8px;
+    background-color: var(--bitcoin-orange);
+    border-radius: 8px;
+}
+
+.currency-table--date-two p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: var(--warm-black);
+    font-weight: 300;
+}
+
+/* segundo contenedor */
+
+.main-product-detail {
+    position: relative;
+    width: 100%; /* necesitamos que el contenedor abarque el 100% de nuestro width*/
+    min-width: 320px;
+    height: auto; /* Quiero que el contenido mismo de esa seccion pueda marcar cual va a ser el tamaño de altura de esta seccion*/
+    padding: 20px 10px; /* Hago que el contenedor me de un espacio interno*/
+    background-color: var(--warm-black);
+}
+
+.product-detail--patata-logo {
+    position: absolute; /* Se pone position absolute porque va a ser entre dos contenedores */
+    width: 40px;
+    height: 25px;
+    top: -10px;
+    left: calc(50% - 20px);
+    background-image: url('./assets/icons/batata.svg');
+}
+
+.product-detail--tittle {
+    width: 90%;
+    min-width: 288px;
+    height: auto; /* Para que el mismo texto pueda delimitar su crecimiento */
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.product-detail--tittle h2 {
+    margin-bottom: 20px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--just-white);
+}
+
+.product-detail--tittle p {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #808080;
+}
+
+.product-detail--card {
+    width: 90%;
+    min-width: 288px;
+    max-width: 900px;
+    height: 150px;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: var(--black);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.product-detail--card .clock {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-image: url('./assets/icons/clock.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-detail--card .eye {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-image: url('./assets/icons/eye.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-detail--card .money {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-image: url('./assets/icons/dollar-sign.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-detail--card .icon-four {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-image: url('./assets/icons/check-circle.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product--card-tittle {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    color: var(--just-white);
+}
+
+.product--card-body {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #808080;
+}
+
+/* Tercer contenedor */
+
+.bitcoin-img-container {
+    width: 100%;
+    min-width: 320px;
+    height: 60vh;
+    background-image: url('./assets/img/bitcoinbaby2x.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.bitcoin-img-container h2 {
+    padding-top: 60px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--just-white);
+}
+
+/* Cuarto contenedor */
+
+.main-plans-container {
+    width: 100%;
+    min-width: 320px;
+    padding-bottom: 70px; /* Para poder alejar lo que es el contenido final con el footer */
+    text-align: center;
+}
+
+.plans--title {
+    width: 90%;
+    min-width: 288px;
+    height: auto; /* Para que el texto mismo pueda limitar el crecimiento del contenedor */
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.plans--title h2 {
+    padding-top: 50px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    color: var(--black);
+}
+
+.plans--title p {
+    padding-top: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #757575;
+}
+
+.plans-container--slider {   /* Usada para darle el scroll horizontal*/
+    display: flex;
+    height: 316px;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+}
+
+.plans-container--card {
+    position: relative;
+    scroll-snap-align: center; /* Es necesario agregar esto para que se centre el scroll*/
+    width: 70%;
+    min-width: 190px;
+    max-width: 300px;
+    height: 250px;
+    margin: 50px 5px 0;
+    padding: 0 15px;
+    background-color: var(--just-white);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(89, 73, 30, 0.16);
+}
+
+.recommended {
+    position: absolute;
+    width: 120px;
+    height: 31px;
+    padding: 6px;
+    left: calc(50% - 60px);
+    top: -15px;
+    font-size: 1.2rem;
+    background-color: var(--bitcoin-orange);
+    border-radius: 8px;
+    color: var(--just-white);
+}
+
+.plan-card--tittle {
+    padding-top: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: var(--black);
+}
+
+.plan-card--price {
+    padding: 5px 0;
+    font-size: 5.2rem;
+    font-weight: bold;
+    line-height: 5.3rem;
+    color: var(--black);
+}
+
+.plan-card--price span {
+    font-size: 1.8rem;
+    font-weight: 300;
+    vertical-align: text-top; /* Etiqueta usada para ponerla en la parte de arriba */
+}
+
+.plan-card--saving {
+    font-size: 1.2rem;
+    color: #757575;
+}
+
+.plan-card--ca {
+    width: 150px;
+    height: 48px;
+    margin-top: 20px;
+    background-color: #faf8f7;
+    border: 2px solid var(--bitcoin-orange);
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    color: var(--black);
+}
+
+.plan-card--ca span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('./assets/icons/orange-right-arrow.svg');
+    vertical-align: text-bottom; /* Para que el texto y el icono esten alineados*/
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    background-color: var(--bitcoin-orange);
+}
+
+footer section {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .left ul {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    list-style: none;
+}
+
+.left li {
+    margin: 10px 0;
+}
+
+.left a {
+    text-decoration: none;
+    color: var(--just-white);
+}
